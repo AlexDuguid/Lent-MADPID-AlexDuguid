@@ -18,6 +18,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, mySprite, 200, 0)
 })
+let Enemy_Space_Craft: Sprite = null
 let projectile: Sprite = null
 let mySprite: Sprite = null
 effects.starField.startScreenEffect()
@@ -42,5 +43,23 @@ mySprite = sprites.create(img`
 controller.moveSprite(mySprite)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 game.onUpdateInterval(500, function () {
-	
+    Enemy_Space_Craft = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . 2 2 5 5 
+        . . . . . . . . 2 2 2 2 2 . 5 5 
+        . . . . . . . 2 2 2 2 2 2 2 5 5 
+        . . . . . . 2 2 2 2 2 2 2 2 5 5 
+        . . . . . 2 2 2 3 3 3 2 2 . . . 
+        . . . . 2 2 2 2 3 3 3 2 . . . . 
+        . . . 2 2 2 2 2 2 2 2 . . . . . 
+        2 2 2 2 2 3 3 3 2 2 2 . . . . . 
+        2 2 2 2 2 3 3 3 2 2 2 2 . . . . 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . 
+        . . . 2 2 2 2 2 2 3 3 3 2 2 5 5 
+        . . . . . 2 2 2 2 3 3 3 2 2 5 5 
+        . . . . . . . . 2 2 2 2 2 2 5 5 
+        . . . . . . . . . . . 2 2 2 5 5 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player)
+    Enemy_Space_Craft.x = 0
 })
