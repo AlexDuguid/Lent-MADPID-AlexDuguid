@@ -18,6 +18,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, mySprite, 200, 0)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    mySprite.destroy()
+})
 let Enemy_Space_Craft: Sprite = null
 let projectile: Sprite = null
 let mySprite: Sprite = null
@@ -42,6 +46,7 @@ mySprite = sprites.create(img`
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
+info.setLife(5)
 game.onUpdateInterval(500, function () {
     Enemy_Space_Craft = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -61,5 +66,7 @@ game.onUpdateInterval(500, function () {
         . . . . . . . . . . . 2 2 2 5 5 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Player)
-    Enemy_Space_Craft.x = 0
+    Enemy_Space_Craft.x = scene.screenWidth()
+    Enemy_Space_Craft.vx = -10
+    Enemy_Space_Craft.y = randint(0, scene.screenHeight() - -5)
 })
