@@ -18,9 +18,14 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, mySprite, 200, 0)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprite.destroy()
+    otherSprite.destroy()
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
-    mySprite.destroy()
+    otherSprite.destroy(effects.blizzard, 500)
 })
 let Enemy_Space_Craft: Sprite = null
 let projectile: Sprite = null
@@ -47,7 +52,7 @@ mySprite = sprites.create(img`
 controller.moveSprite(mySprite)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
-game.onUpdateInterval(500, function () {
+game.onUpdateInterval(2000, function () {
     Enemy_Space_Craft = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . 2 2 5 5 
