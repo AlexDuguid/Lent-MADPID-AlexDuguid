@@ -19,7 +19,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         `, mySprite, 200, 0)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    Enemy_Space_Craft.destroy(effects.spray, 500)
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -49,7 +49,7 @@ mySprite = sprites.create(img`
     . . . . . . . . . . . . . 2 2 2 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-controller.moveSprite(mySprite)
+controller.moveSprite(mySprite, 100, 100)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
 game.onUpdateInterval(3500, function () {
@@ -70,8 +70,8 @@ game.onUpdateInterval(3500, function () {
         . . . . . . . . 2 2 2 2 2 2 5 5 
         . . . . . . . . . . . 2 2 2 5 5 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Player)
+        `, SpriteKind.Enemy)
     Enemy_Space_Craft.x = scene.screenWidth()
     Enemy_Space_Craft.vx = -10
-    Enemy_Space_Craft.y = randint(0, scene.screenHeight() - -5)
+    Enemy_Space_Craft.y = randint(10, scene.screenHeight())
 })
