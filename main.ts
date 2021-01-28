@@ -20,6 +20,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     Enemy_Space_Craft.destroy(effects.spray, 500)
+    statusbar.value += 0
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -27,6 +28,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     otherSprite.destroy(effects.blizzard, 500)
     scene.cameraShake(4, 500)
 })
+let statusbar: StatusBarSprite = null
 let Enemy_Space_Craft: Sprite = null
 let projectile: Sprite = null
 let mySprite: Sprite = null
@@ -74,4 +76,6 @@ game.onUpdateInterval(3500, function () {
     Enemy_Space_Craft.x = scene.screenWidth()
     Enemy_Space_Craft.vx = -10
     Enemy_Space_Craft.y = randint(10, scene.screenHeight())
+    statusbar = statusbars.create(16, 4, StatusBarKind.EnemyHealth)
+    statusbar.attachToSprite(Enemy_Space_Craft)
 })
