@@ -56,6 +56,11 @@ mySprite = sprites.create(img`
 controller.moveSprite(mySprite, 100, 100)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
+let speed_of_enemy = 15
+game.onUpdateInterval(5000, function () {
+    speed_of_enemy += 10
+    speed_of_enemy = Math.min(speed_of_enemy, 60)
+})
 game.onUpdateInterval(3500, function () {
     Enemy_Space_Craft = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -76,7 +81,7 @@ game.onUpdateInterval(3500, function () {
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Enemy)
     Enemy_Space_Craft.x = scene.screenWidth()
-    Enemy_Space_Craft.vx = -10
+    Enemy_Space_Craft.vx = 0 - speed_of_enemy
     Enemy_Space_Craft.y = randint(10, scene.screenHeight())
     statusbar = statusbars.create(13, 2, StatusBarKind.EnemyHealth)
     statusbar.attachToSprite(Enemy_Space_Craft)
