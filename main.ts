@@ -57,11 +57,14 @@ controller.moveSprite(mySprite, 100, 100)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
 let speed_of_enemy = 15
+let Spawn_enemy_time = 3500
 game.onUpdateInterval(5000, function () {
     speed_of_enemy += 10
-    speed_of_enemy = Math.min(speed_of_enemy, 60)
+    speed_of_enemy = Math.min(speed_of_enemy, 50)
+    Spawn_enemy_time += -500
+    speed_of_enemy = Math.max(Spawn_enemy_time, 50)
 })
-game.onUpdateInterval(3500, function () {
+forever(function () {
     Enemy_Space_Craft = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . 2 2 5 5 
@@ -85,4 +88,5 @@ game.onUpdateInterval(3500, function () {
     Enemy_Space_Craft.y = randint(10, scene.screenHeight())
     statusbar = statusbars.create(13, 2, StatusBarKind.EnemyHealth)
     statusbar.attachToSprite(Enemy_Space_Craft)
+    pause(Spawn_enemy_time)
 })
