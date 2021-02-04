@@ -20,8 +20,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     Enemy_Space_Craft.destroy(effects.spray, 500)
-    statusbar.value += 0
     info.changeScoreBy(1)
+    statusbars.getStatusBarAttachedTo(StatusBarKind.EnemyHealth, Enemy_Space_Craft).value = -5
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
@@ -32,7 +32,7 @@ let statusbar: StatusBarSprite = null
 let Enemy_Space_Craft: Sprite = null
 let projectile: Sprite = null
 let mySprite: Sprite = null
-effects.starField.startScreenEffect()
+effects.blizzard.startScreenEffect(500)
 mySprite = sprites.create(img`
     . . . . . . . . . . . . . 2 2 2 
     . . . . . . . . . . . . 2 2 2 2 
