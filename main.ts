@@ -18,10 +18,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, mySprite, 200, 0)
 })
+statusbars.onZero(StatusBarKind.EnemyHealth, function (status) {
+    status.spriteAttachedTo().destroy()
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    Enemy_Space_Craft.destroy(effects.spray, 500)
     info.changeScoreBy(1)
-    statusbars.getStatusBarAttachedTo(StatusBarKind.EnemyHealth, Enemy_Space_Craft).value = -5
+    statusbars.getStatusBarAttachedTo(StatusBarKind.EnemyHealth, otherSprite).value += -5
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
@@ -76,6 +78,6 @@ game.onUpdateInterval(3500, function () {
     Enemy_Space_Craft.x = scene.screenWidth()
     Enemy_Space_Craft.vx = -10
     Enemy_Space_Craft.y = randint(10, scene.screenHeight())
-    statusbar = statusbars.create(16, 4, StatusBarKind.EnemyHealth)
+    statusbar = statusbars.create(13, 2, StatusBarKind.EnemyHealth)
     statusbar.attachToSprite(Enemy_Space_Craft)
 })
