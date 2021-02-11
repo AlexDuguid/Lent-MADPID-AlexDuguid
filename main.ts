@@ -56,13 +56,13 @@ mySprite = sprites.create(img`
 controller.moveSprite(mySprite, 100, 100)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
-let speed_of_enemy = 15
-let Spawn_enemy_time = 3500
+let speed_of_enemy = 20
+let Spawn_enemy_time = 20
 game.onUpdateInterval(5000, function () {
     speed_of_enemy += 10
     speed_of_enemy = Math.min(speed_of_enemy, 50)
     Spawn_enemy_time += -500
-    speed_of_enemy = Math.max(Spawn_enemy_time, 50)
+    Spawn_enemy_time = Math.max(Spawn_enemy_time, 750)
 })
 forever(function () {
     Enemy_Space_Craft = sprites.create(img`
